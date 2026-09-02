@@ -3,69 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CalcPulse Pro - Futuristic Financial & Scientific Suite</title>
+  <title>CalcPulse Ultra — Scientific & Financial Suite</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-theme="dark">
 
-  <div class="background-glow"></div>
+  <div class="glow-bg"></div>
 
-  <div class="calculator-card">
-    <!-- Header -->
+  <div class="calculator-frame">
+
+    <!-- Top Header & Mode Navigation -->
     <header class="calc-header">
-      <div class="brand">
-        <div class="logo-icon">⚡</div>
-        Calc<span>Pulse</span> <small>PRO</small>
-      </div>
-      <div class="mode-switch-wrapper">
-        <button class="mode-pill active" data-mode="standard">Std</button>
-        <button class="mode-pill" data-mode="scientific">Sci</button>
-        <button class="mode-pill" data-mode="financial">EMI</button>
+      <div class="brand">Calc<span>Pulse</span></div>
+      <div class="header-right">
+        <button id="themeToggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle light/dark theme">🌙</button>
+        <div class="mode-pills">
+          <button class="pill-btn active" data-mode="standard">Std</button>
+          <button class="pill-btn" data-mode="scientific">Sci</button>
+          <button class="pill-btn" data-mode="financial">EMI</button>
+        </div>
       </div>
     </header>
 
-    <!-- Display Screen -->
-    <div class="display-container">
-      <div class="status-indicator" id="statusBadge">Standard Mode</div>
-      <div id="historyDisplay" class="history-text"></div>
-      <div id="mainDisplay" class="main-text">0</div>
+    <!-- Screen Display -->
+    <div class="screen-container">
+      <div class="screen-top-bar">
+        <div class="badge-group">
+          <span class="screen-badge" id="statusBadge">STANDARD MODE</span>
+          <span id="memIndicator" class="mem-indicator">M</span>
+        </div>
+        <div class="screen-actions">
+          <button id="copyBtn" class="icon-btn" title="Copy result" aria-label="Copy result to clipboard">⧉</button>
+          <button id="degRadBtn" class="deg-rad-toggle">DEG</button>
+        </div>
+      </div>
+      <div id="historyDisplay" class="screen-history"></div>
+      <div id="mainDisplay" class="screen-main" title="Tap to copy">0</div>
     </div>
 
-    <!-- Standard & Scientific Keypad Grid -->
-    <div id="standardKeypad" class="keypad-grid">
-      <!-- Sci Row -->
+    <!-- Keypad Matrix -->
+    <div id="standardKeypad" class="keypad-matrix">
+
+      <!-- Memory Row — always visible in Std & Sci -->
+      <button class="btn mem-btn" data-action="mc">MC</button>
+      <button class="btn mem-btn" data-action="mr">MR</button>
+      <button class="btn mem-btn" data-action="mplus">M+</button>
+      <button class="btn mem-btn" data-action="mminus">M-</button>
+
+      <!-- Scientific Row 1 -->
+      <button class="btn sci-btn hide" data-action="degRadToggle">Deg/Rad</button>
+      <button class="btn sci-btn hide" data-val="(">(</button>
+      <button class="btn sci-btn hide" data-val=")">)</button>
+      <button class="btn sci-btn hide" data-action="pow">x²</button>
+
+      <!-- Scientific Row 2 -->
       <button class="btn sci-btn hide" data-action="sin">sin</button>
       <button class="btn sci-btn hide" data-action="cos">cos</button>
       <button class="btn sci-btn hide" data-action="tan">tan</button>
-      <button class="btn sci-btn hide" data-action="sqrt">√x</button>
-      <button class="btn sci-btn hide" data-action="pow">x²</button>
+      <button class="btn sci-btn hide" data-action="sqrt">√</button>
 
-      <!-- Row 1 -->
+      <!-- Scientific Row 3 -->
+      <button class="btn sci-btn hide" data-action="ln">ln</button>
+      <button class="btn sci-btn hide" data-action="log">log</button>
+      <button class="btn sci-btn hide" data-action="inv">1/x</button>
+      <button class="btn sci-btn hide" data-action="fact">n!</button>
+
+      <!-- Scientific Row 4 -->
+      <button class="btn sci-btn hide" data-action="pi">π</button>
+      <button class="btn sci-btn hide" data-action="euler">e</button>
+      <button class="btn sci-btn hide" data-action="xy">xʸ</button>
+      <button class="btn sci-btn hide" data-val="%">%</button>
+
+      <!-- Standard Controls -->
       <button class="btn action-btn" data-action="clear">AC</button>
       <button class="btn action-btn" data-action="backspace">⌫</button>
       <button class="btn action-btn" data-action="percent">%</button>
-      <button class="btn operator-btn" data-action="/">÷</button>
+      <button class="btn operator-btn" data-val="/">÷</button>
 
-      <!-- Row 2 -->
+      <!-- Keypad Numbers -->
       <button class="btn num-btn" data-val="7">7</button>
       <button class="btn num-btn" data-val="8">8</button>
       <button class="btn num-btn" data-val="9">9</button>
-      <button class="btn operator-btn" data-action="*">×</button>
+      <button class="btn operator-btn" data-val="*">×</button>
 
-      <!-- Row 3 -->
       <button class="btn num-btn" data-val="4">4</button>
       <button class="btn num-btn" data-val="5">5</button>
       <button class="btn num-btn" data-val="6">6</button>
-      <button class="btn operator-btn" data-action="-">-</button>
+      <button class="btn operator-btn" data-val="-">-</button>
 
-      <!-- Row 4 -->
       <button class="btn num-btn" data-val="1">1</button>
       <button class="btn num-btn" data-val="2">2</button>
       <button class="btn num-btn" data-val="3">3</button>
-      <button class="btn operator-btn" data-action="+">+</button>
+      <button class="btn operator-btn" data-val="+">+</button>
 
-      <!-- Row 5 -->
       <button class="btn num-btn zero-btn" data-val="0">0</button>
       <button class="btn num-btn" data-val=".">.</button>
       <button class="btn equals-btn" data-action="equals">=</button>
@@ -74,20 +105,20 @@
     <!-- Financial Panel -->
     <div id="financialPanel" class="financial-panel hide">
       <div class="input-card">
-        <label>Principal Amount ($ / Rs)</label>
+        <label>Principal Amount ($/Rs)</label>
         <input type="number" id="loanAmount" value="500000">
       </div>
       <div class="input-card">
-        <label>Interest Rate (% Per Annum)</label>
-        <input type="number" id="interestRate" value="12">
+        <label>Interest Rate (% Per Year)</label>
+        <input type="number" id="interestRate" value="10.5">
       </div>
       <div class="input-card">
-        <label>Tenure Period (Years)</label>
-        <input type="number" id="loanTenure" value="3">
+        <label>Tenure (Years)</label>
+        <input type="number" id="loanTenure" value="5">
       </div>
-      <button id="calcEmiBtn" class="glow-submit-btn">Calculate EMI Breakdown</button>
+      <button id="calcEmiBtn" class="glow-submit-btn">Calculate Breakdown</button>
 
-      <div class="emi-results-grid hide" id="emiResults">
+      <div class="emi-results hide" id="emiResults">
         <div class="result-box">
           <span>Monthly EMI</span>
           <h3 id="monthlyEmiVal">$0</h3>
@@ -100,16 +131,22 @@
     </div>
 
     <!-- History Drawer -->
-    <div class="history-card">
-      <div class="history-header">
-        <span>📜 Tape Memory Log</span>
-        <button id="clearHistoryBtn">Clear</button>
+    <div class="history-section">
+      <div class="history-head">
+        <span>Tape Log · click to reuse</span>
+        <div class="history-head-actions">
+          <button id="exportHistoryBtn">Export</button>
+          <button id="clearHistoryBtn">Clear</button>
+        </div>
       </div>
-      <ul id="historyList" class="history-stream">
-        <li class="empty-log">No previous calculations recorded</li>
+      <ul id="historyList" class="history-list">
+        <li class="empty-msg">No history recorded</li>
       </ul>
     </div>
+
   </div>
+
+  <div id="toast" class="toast"></div>
 
   <script src="app.js"></script>
 </body>
