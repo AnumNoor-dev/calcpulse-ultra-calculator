@@ -4,7 +4,7 @@ CalcPulse Ultra is an advanced, ultra-responsive web application built using Van
 
 ## 🌐 Live Demo & Repository
 - **Live Demo:** https://calcpulse-ultra-calculator.netlify.app
-- **GitHub Repository:** https://github.com/anumn9748-design/calcpulse-ultra-calculator
+- **GitHub Repository:** https://github.com/AnumNoor-dev/calcpulse-ultra-calculator.git
 
 ---
 
